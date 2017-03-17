@@ -1,0 +1,32 @@
+{
+  "name": "week-18-mongoscraper",
+  "version": "1.0.0",
+  "description": "mongo mongoose cheerio",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ad5jo/week-18-mongoScraper.git"
+  },
+  "keywords": [
+    "mongo",
+    "mongoose",
+    "cheerio"
+  ],
+  "author": "Dave Durkee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ad5jo/week-18-mongoScraper/issues"
+  },
+  "homepage": "https://github.com/ad5jo/week-18-mongoScraper#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cheerio": "^0.22.0",
+    "express": "^4.15.2",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^4.9.0",
+    "request": "^2.81.0"
+  }
+}
