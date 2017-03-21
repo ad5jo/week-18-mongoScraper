@@ -1,0 +1,3 @@
+$ heroku config | grep MONGODB_URI
+MONGODB_URI: mongodb://heroku_s03r74pf:ugbink99j0vlr6tvgk5ltc5f20@ds137340.mlab.com:37340/heroku_s03r74pf
+
