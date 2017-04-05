@@ -1,12 +1,20 @@
-/* Mongoose's 
+/* week 18 homework Dave Durkee, Mongoose, Mongo, handlebars and express
  * working scrape example
  * =============================================== */
 
 // Dependencies
 var express = require("express");
+exphbs  = require('express-handlebars');
+// Initialize Express
+var app = express();
+
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
+
+
 var bodyParser = require("body-parser");
-var logger = require("morgan");
-var mongoose = require("mongoose");
+var logger = require("morgan"); // logging data
+var mongoose = require("mongoose"); // template for Mongo db
 // Requiring our Note and Article models
 var Note = require("./models/Note.js");
 var Article = require("./models/Article.js");
@@ -17,8 +25,6 @@ var cheerio = require("cheerio");
 mongoose.Promise = Promise;
 
 
-// Initialize Express
-var app = express();
 
 // Use morgan with our app
 app.use(logger("dev"));
@@ -28,10 +34,11 @@ app.use(bodyParser.urlencoded({
 }));
 
 // Make public a static dir
-app.use(express.static("public"));
+//app.use(express.static("public"));
 
 // Database configuration with mongoose
 // mongoose.connect("mongodb://localhost/week18day_mongoose");
+
 mongoose.connect("mongodb://localhost/homework_18_scrap");
 var db = mongoose.connection;
 
@@ -48,6 +55,21 @@ db.once("open", function() {
 
 // Routes
 // ======
+app.get('/', function (req, res) {
+    res.render('home');
+});
+
+
+app.get("/p1", function(req, res) {
+  res.send("p1 Complete.");
+});
+
+app.get("/p2", function(req, res) {
+  res.send("p2 Complete.");
+});
+
+
+
 var the_url_to_scrape = "http://www.echojs.com/"
 
 // A GET request to scrape the echojs website
@@ -85,7 +107,9 @@ app.get("/scrape", function(req, res) {
     });
   });
   // Tell the browser that we finished scraping the text
-  res.send("Scrape Complete. Next do /articles");
+  //res.send("Scrape Complete. Next do /articles");
+  res.render('home');
+  //window.location.href = './';
 });
 
 // This will get the articles we scraped from the mongoDB
@@ -154,7 +178,20 @@ app.post("/articles/:id", function(req, res) {
 });
 
 
-// Listen on port 3000
-app.listen(8080, function() {
-  console.log("App running on port 8080!");
+// Listen on port 8080
+var port = process.env.PORT || 8080;
+// app.listen(8080, function() {
+//   console.log("App running on port 8080!");
+// });
+
+app.listen(port, function() {
+  console.log("App running on port: " + port);
+  console.log("process.cwd is");
+  // console.log(process.cwd());
+  var theProcess = process.cwd()
+  console.log(theProcess);
+  console.log("-----------------");
 });
+
+//http://stackoverflow.com/questions/15693192/heroku-node-js-error-web-process-failed-to-bind-to-port-within-60-seconds-of
+//.listen(process.env.PORT || 8080)

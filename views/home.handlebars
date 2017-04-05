@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Realtime Web Updates</title>
+    
+    <!-- <style> </style> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+  <script type="text/javascript">
+    function reply_click(clicked_id)
+    {
+      if (clicked_id === "id_scrape"){
+        alert("do scrape");
+        console.log("do scrape");
+        window.location.href = './scrape';
+      }
+      else if (clicked_id === "id_articles"){
+        alert("Show article");
+        console.log("Show article");
+        window.location.href = './articles';
+      }
+    } // end function
+  </script>
+
+  </head>
+  <body>
+    <div id="wrapper">
+      <h1>NY Times Scraper</h1>
+
+      <h2><i>Your news and your notes.</i></h2>
+      <br>
+        <button id="id_scrape" onClick="reply_click(this.id)">Get Newest News</button>
+        <button id="id_articles" onClick="reply_click(this.id)">Articles</button>
+      
+
+      <div id="articles"></div>
+      <div id="notes"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    
+  </body>
+</html>
